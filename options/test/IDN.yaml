@@ -1,0 +1,23 @@
+#generate settings
+mode: SR
+name: IDN
+gpu_ids: [0]
+scale: 2
+dataset_name: ~
+dataset_list: ~
+calc_cuda_time: true
+   
+#datasets
+datasets:
+  test:
+    mode: Benchmark
+    dataroot_HR: data/Benchmark/dataset_name/HR
+    dataroot_LR: data/Benchmark/dataset_name/LR_bicubic/XN
+    
+#networks
+networks:
+  which_model: IDN
+  pretrained: ~
+  in_channels: 3
+  num_fea: 64
+  out_channels: 3

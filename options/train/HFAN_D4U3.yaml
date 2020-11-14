@@ -1,0 +1,67 @@
+#general settings
+name: HFAN_D4U3
+mode: SR
+gpu_ids: [3]
+
+scale: 2
+patch_size: 96
+use_chop: true
+
+#datasets
+datasets:
+  train:
+    mode: DIV2K
+    dataroot_HR: data/DIV2K/bin/DIV2K_train_HR
+    dataroot_LR: data/DIV2K/bin/DIV2K_train_LR_bicubic/XN
+    filename_path: data/DIV2K_train.txt
+    n_workers: 4
+    batch_size: 16
+    use_flip: true
+    use_rot: true
+    enlarge_times: 20
+  val:
+    mode: DIV2K
+    dataroot_HR: data/DIV2K/bin/DIV2K_train_HR
+    dataroot_LR: data/DIV2K/bin/DIV2K_train_LR_bicubic/XN
+    filename_path: data/DIV2K_val_small.txt
+    enlarge_times: 1
+
+#networks
+networks:
+  which_model: HFAN
+  in_channels: 3
+  num_fea: 64
+  out_channels: 3
+  down_RBs: 4
+  up_RBs: 3
+  reduce_rate: 2
+  dataparallel: false
+      
+#path to save
+paths:
+  experiment_root: ./experiment
+
+#optimizer
+solver:
+  type: ADAM
+  beta1: !!float 0.9
+  beta2: !!float 0.999
+  eps: !!float 1e-8
+  init_type: kaiming
+  learning_rate: !!float 6e-4
+  weight_decay: 0
+  lr_scheme: MultiStepLR
+  lr_steps: 
+    - 200
+  lr_gamma: !!float 0.5
+  loss_type: l1
+  manual_seed: 0
+  num_epochs: 300
+  skip_threshold: 5 # for stable training
+  save_ckp_step: 400
+  val_step: 1
+  resume: ~
+
+#print
+print:
+  print_freq: 200

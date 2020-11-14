@@ -1,0 +1,26 @@
+#generate settings
+mode: SR
+name: HFAN
+gpu_ids: [0]
+scale: 2
+dataset_name: ~
+dataset_list: ~
+calc_cuda_time: true
+   
+#datasets
+datasets:
+  test:
+    mode: Benchmark
+    dataroot_HR: data/Benchmark/dataset_name/HR
+    dataroot_LR: data/Benchmark/dataset_name/LR_bicubic/XN
+    
+#networks
+networks:
+  which_model: HFAN
+  pretrained: ~
+  in_channels: 3
+  num_fea: 64
+  out_channels: 3
+  down_RBs: 4
+  up_RBs: 2
+  reduce_rate: 2
