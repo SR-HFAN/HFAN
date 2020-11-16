@@ -90,6 +90,7 @@ def main():
     #prefix = 'Compare_with_other_attention_mechanisms'
     #prefix = 'Study_U'
     #prefix = 'Study_D'
+    prefix = 'After submission'
 
     # training 
     for epoch in range(start_epoch, NUM_EPOCH+1):
